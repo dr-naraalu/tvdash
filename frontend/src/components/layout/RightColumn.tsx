@@ -1,7 +1,9 @@
+import SystemMetrics from "../../widgets/SystemMetrics/SystemMetrics";
+
 export default function RightColumn() {
   return (
     <section className="column right">
-      SERVER
+      <SystemMetrics />
     </section>
   );
 }

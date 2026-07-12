@@ -5,10 +5,13 @@ import "./styles/reset.css";
 import "./styles/variables.css";
 import "./styles/globals.css";
 
-import { App } from "./app";
+import App from "./app/App";
+import { DashboardProvider } from "./context/DashboardContext";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <DashboardProvider>
+      <App />
+    </DashboardProvider>
   </StrictMode>
 );
