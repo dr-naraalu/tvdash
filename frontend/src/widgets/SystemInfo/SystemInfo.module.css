@@ -1,0 +1,49 @@
+.card {
+
+  width:100%;
+
+}
+
+
+
+.title {
+
+  font-size:13px;
+
+  letter-spacing:4px;
+
+  color:var(--text-muted);
+
+  margin-bottom:14px;
+
+}
+
+
+
+.row {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:12px;
+
+  font-size:14px;
+
+}
+
+
+
+.row span {
+
+  color:var(--text-muted);
+
+}
+
+
+
+.row strong {
+
+  font-weight:500;
+
+}

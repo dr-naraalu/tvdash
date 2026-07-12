@@ -5,6 +5,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { YAxis } from "recharts";
 
 type Props = {
   upload: number;
@@ -78,7 +79,10 @@ export default function NetworkGraph({
           <LineChart
             data={history}
           >
-
+            <YAxis
+            domain={[0, 20]}
+             hide
+            />
             <CartesianGrid
               stroke="rgba(255,255,255,0.05)"
               vertical={false}

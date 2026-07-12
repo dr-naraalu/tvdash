@@ -6,57 +6,198 @@ import {
   type ReactNode,
 } from "react";
 
-import {
-  getDashboardData,
-  type DashboardData,
-} from "../services/systemApi";
+
+export type DashboardData = {
+
+  cpu: number;
+
+  ram: number;
+
+  disk: number;
+
+  media: number;
+
+
+  upload: number;
+
+  download: number;
+
+
+  uptime: number;
+
+  hostname: string;
+
+
+  services: {
+
+    jellyfin: boolean;
+
+    immich: boolean;
+
+    pihole: boolean;
+
+  };
+
+};
+
+
 
 const defaultData: DashboardData = {
+
   cpu: 0,
+
   ram: 0,
+
   disk: 0,
+
   media: 0,
+
+
   upload: 0,
+
   download: 0,
+
+
+  uptime: 0,
+
+  hostname: "",
+
+
+  services: {
+
+    jellyfin: false,
+
+    immich: false,
+
+    pihole: false,
+
+  },
+
 };
+
+
 
 const DashboardContext =
   createContext<DashboardData>(defaultData);
+
+
 
 export function DashboardProvider({
   children,
 }: {
   children: ReactNode;
 }) {
+
+
   const [data, setData] =
-    useState(defaultData);
+    useState<DashboardData>(defaultData);
+
+
 
   useEffect(() => {
-    async function refresh() {
+
+
+    async function fetchStats() {
+
       try {
-        setData(await getDashboardData());
+
+
+        const res = await fetch(
+          "http://192.168.0.102:8000/stats"
+        );
+
+
+        const stats = await res.json();
+
+
+
+        setData({
+
+          cpu: stats.cpu ?? 0,
+
+          ram: stats.ram ?? 0,
+
+          disk: stats.disk ?? 0,
+
+          media: stats.media ?? 0,
+
+
+          upload: stats.upload ?? 0,
+
+          download: stats.download ?? 0,
+
+
+          uptime: stats.uptime ?? 0,
+
+          hostname: stats.hostname ?? "",
+
+
+
+          services: stats.services ?? {
+
+            jellyfin: false,
+
+            immich: false,
+
+            pihole: false,
+
+          },
+
+        });
+
+
+
       } catch (err) {
-        console.error(err);
+
+        console.error(
+          "Failed to fetch dashboard stats:",
+          err
+        );
+
       }
+
     }
 
-    refresh();
+
+
+    fetchStats();
+
+
 
     const timer = setInterval(
-      refresh,
+      fetchStats,
       1000
     );
 
-    return () => clearInterval(timer);
+
+
+    return () =>
+      clearInterval(timer);
+
+
+
   }, []);
 
+
+
+
   return (
+
     <DashboardContext.Provider value={data}>
+
       {children}
+
     </DashboardContext.Provider>
+
   );
+
 }
 
+
+
+
 export function useDashboard() {
+
   return useContext(DashboardContext);
+
 }
