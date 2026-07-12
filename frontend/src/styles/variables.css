@@ -1,0 +1,22 @@
+:root {
+  --background-primary: #050505;
+  --background-surface: #101010;
+
+  --border-subtle: #202020;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #8b8b8b;
+  --text-muted: #5a5a5a;
+
+  --accent-green: #6ee7b7;
+  --accent-blue: #60a5fa;
+  --accent-amber: #fbbf24;
+  --accent-red: #f87171;
+
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-xxl: 64px;
+}
