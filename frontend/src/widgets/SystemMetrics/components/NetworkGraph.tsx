@@ -3,7 +3,7 @@ import {
   LineChart,
   Line,
   ResponsiveContainer,
-  YAxis,
+  CartesianGrid,
 } from "recharts";
 
 type Props = {
@@ -16,83 +16,118 @@ type Point = {
   download: number;
 };
 
-const HISTORY_LENGTH = 60;
+const HISTORY = 60;
 
 export default function NetworkGraph({
   upload,
   download,
 }: Props) {
+
   const [history, setHistory] = useState<Point[]>(
-    Array.from({ length: HISTORY_LENGTH }, () => ({
-      upload: 0,
-      download: 0,
-    }))
-  );
-
-  useEffect(() => {
-    setHistory((prev) => [
-      ...prev.slice(1),
-      {
-        upload,
-        download,
-      },
-    ]);
-  }, [upload, download]);
-
-  const maxValue = Math.max(
-    1,
-    ...history.map((p) =>
-      Math.max(p.upload, p.download)
+    Array.from(
+      { length: HISTORY },
+      () => ({
+        upload: 0,
+        download: 0,
+      })
     )
   );
 
+
+  useEffect(() => {
+
+    const timer = setInterval(() => {
+
+      setHistory(prev => [
+        ...prev.slice(1),
+        {
+          upload,
+          download,
+        },
+      ]);
+
+    }, 1000);
+
+
+    return () =>
+      clearInterval(timer);
+
+  }, [
+    upload,
+    download
+  ]);
+
+
+
   return (
     <div className="network-card">
+
+
       <div className="network-title">
         NETWORK
       </div>
 
+
       <div className="network-graph">
+
         <ResponsiveContainer
           width="100%"
           height={140}
         >
-          <LineChart data={history}>
-            <YAxis
-              hide
-              domain={[0, maxValue]}
+
+          <LineChart
+            data={history}
+          >
+
+            <CartesianGrid
+              stroke="rgba(255,255,255,0.05)"
+              vertical={false}
             />
+
 
             <Line
               type="monotone"
               dataKey="upload"
-              stroke="#22c55e"
+              stroke="#7CFF9B"
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
             />
+
 
             <Line
               type="monotone"
               dataKey="download"
-              stroke="#3b82f6"
+              stroke="#78A8FF"
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}
             />
+
+
           </LineChart>
+
         </ResponsiveContainer>
+
       </div>
+
+
 
       <div className="network-stats">
-        <div className="upload">
-          ↑ {upload.toFixed(2)} MB/s
-        </div>
 
-        <div className="download">
+        <span className="upload">
+          ↑ {upload.toFixed(2)} MB/s
+        </span>
+
+
+        <span className="download">
           ↓ {download.toFixed(2)} MB/s
-        </div>
+        </span>
+
+
       </div>
+
+
     </div>
   );
 }

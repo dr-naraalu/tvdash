@@ -1,35 +1,53 @@
-import { StatusMeter, NetworkGraph } from "./components";
+import {
+  StatusMeter,
+  NetworkGraph,
+} from "./components";
+
+import { Card } from "../../components/ui";
+
 import { useDashboard } from "../../context/DashboardContext";
+
 
 export default function SystemMetrics() {
   const stats = useDashboard();
 
   return (
     <div className="system-metrics">
-      <StatusMeter
-        title="CPU"
-        value={stats.cpu}
-      />
 
-      <StatusMeter
-        title="RAM"
-        value={stats.ram}
-      />
+      <Card title="SYSTEM">
 
-      <StatusMeter
-        title="ROOT"
-        value={stats.disk}
-      />
+        <StatusMeter
+          title="CPU"
+          value={stats.cpu}
+        />
 
-      <StatusMeter
-        title="MEDIA"
-        value={stats.media}
-      />
+        <StatusMeter
+          title="RAM"
+          value={stats.ram}
+        />
 
-      <NetworkGraph
-        upload={stats.upload}
-        download={stats.download}
-      />
+        <StatusMeter
+          title="ROOT"
+          value={stats.disk}
+        />
+
+        <StatusMeter
+          title="MEDIA"
+          value={stats.media}
+        />
+
+      </Card>
+
+
+      <Card title="NETWORK">
+
+        <NetworkGraph
+          upload={stats.upload}
+          download={stats.download}
+        />
+
+      </Card>
+
     </div>
   );
 }
