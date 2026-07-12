@@ -62,3 +62,25 @@ body,
 .right {
   grid-column: 3;
 }
+
+.clock {
+  text-align: center;
+}
+
+.clock-time {
+  font-size: 120px;
+  font-weight: 200;
+  letter-spacing: 8px;
+}
+
+.clock-day {
+  font-size: 18px;
+  letter-spacing: 8px;
+}
+
+.clock-date {
+  margin-top: var(--space-xs);
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
