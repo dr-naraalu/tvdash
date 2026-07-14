@@ -1,3 +1,4 @@
+import { getApiBase } from "../config/api";
 import {
   createContext,
   useContext,
@@ -5,6 +6,51 @@ import {
   useState,
   type ReactNode,
 } from "react";
+
+
+export type WeatherForecast = {
+
+  time: string;
+  temp: number;
+  rain: number;
+
+};
+
+
+export type WeatherData = {
+
+  temperature: number;
+  humidity: number;
+  condition: number;
+  message: string;
+  forecast: WeatherForecast[];
+
+};
+
+
+
+export type CalendarData = {
+
+  samvatsaram: string;
+
+  ayanam: string;
+
+  rutuvu: string;
+
+  maasam: string;
+
+  tithi: string;
+
+  tithi_end: string;
+
+  nakshatram: string;
+
+  sunrise: string;
+
+  sunset: string;
+
+};
+
 
 
 export type DashboardData = {
@@ -36,13 +82,22 @@ export type DashboardData = {
 
     pihole: boolean;
 
+    homeAssistant: boolean;
+
   };
+
+
+  weather: WeatherData;
+
+
+  calendar: CalendarData;
 
 };
 
 
 
 const defaultData: DashboardData = {
+
 
   cpu: 0,
 
@@ -71,7 +126,48 @@ const defaultData: DashboardData = {
 
     pihole: false,
 
+    homeAssistant: false,
+
   },
+
+
+  weather: {
+
+    temperature: 0,
+
+    humidity: 0,
+
+    condition: 0,
+
+    message: "",
+
+    forecast: [],
+
+  },
+
+
+  calendar: {
+
+    samvatsaram: "",
+
+    ayanam: "",
+
+    rutuvu: "",
+
+    maasam: "",
+
+    tithi: "",
+
+    tithi_end: "",
+
+    nakshatram: "",
+
+    sunrise: "",
+
+    sunset: "",
+
+  },
+
 
 };
 
@@ -99,19 +195,29 @@ export function DashboardProvider({
 
     async function fetchStats() {
 
+
       try {
 
 
-        const res = await fetch(
-          "http://192.168.0.102:8000/stats"
-        );
+        const API = await getApiBase();
+
+        console.log("Using API:", API);
 
 
-        const stats = await res.json();
+        const res =
+          await fetch(`${API}/stats`);
+
+
+        const stats =
+          await res.json();
+
+
+        console.log("Dashboard:", stats);
 
 
 
         setData({
+
 
           cpu: stats.cpu ?? 0,
 
@@ -132,16 +238,20 @@ export function DashboardProvider({
           hostname: stats.hostname ?? "",
 
 
+          services:
+            stats.services ??
+            defaultData.services,
 
-          services: stats.services ?? {
 
-            jellyfin: false,
+          weather:
+            stats.weather ??
+            defaultData.weather,
 
-            immich: false,
 
-            pihole: false,
+          calendar:
+            stats.calendar ??
+            defaultData.calendar,
 
-          },
 
         });
 
@@ -149,12 +259,15 @@ export function DashboardProvider({
 
       } catch (err) {
 
+
         console.error(
-          "Failed to fetch dashboard stats:",
+          "Dashboard error:",
           err
         );
 
+
       }
+
 
     }
 
@@ -163,11 +276,11 @@ export function DashboardProvider({
     fetchStats();
 
 
-
-    const timer = setInterval(
-      fetchStats,
-      1000
-    );
+    const timer =
+      setInterval(
+        fetchStats,
+        10000
+      );
 
 
 
@@ -180,10 +293,11 @@ export function DashboardProvider({
 
 
 
-
   return (
 
-    <DashboardContext.Provider value={data}>
+    <DashboardContext.Provider
+      value={data}
+    >
 
       {children}
 
@@ -192,7 +306,6 @@ export function DashboardProvider({
   );
 
 }
-
 
 
 

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Ramabhadra&display=swap');
+
+
 /*
 ========================
 Global Reset
@@ -5,7 +8,9 @@ Global Reset
 */
 
 * {
-  box-sizing: border-box;
+
+  box-sizing:border-box;
+
 }
 
 
@@ -14,6 +19,7 @@ body,
 #root {
 
   width:100%;
+
   height:100%;
 
   margin:0;
@@ -28,8 +34,8 @@ body,
     Inter,
     system-ui,
     sans-serif;
-}
 
+}
 
 
 /*
@@ -37,18 +43,6 @@ body,
 Dashboard Layout
 ========================
 */
-
-.dashboard {
-
-  background:var(--background-primary);
-
-  color:var(--text-primary);
-
-  border-right:
-    1px solid var(--border-subtle);
-
-}
-
 
 
 .homeos-layout {
@@ -61,13 +55,14 @@ Dashboard Layout
     1fr 2fr 1fr;
 
   grid-template-rows:
-    1fr auto;
+    1fr 42px;
 
-  gap:var(--space-md);
+  gap:24px;
 
-  padding:var(--space-lg);
+  padding:28px;
 
-  background:var(--background-primary);
+  background:
+    var(--background-primary);
 
 }
 
@@ -75,26 +70,37 @@ Dashboard Layout
 
 .status-bar {
 
-  grid-column:
-    1 / -1;
+  grid-column:1 / -1;
+
+  height:42px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:12px;
 
   color:var(--text-muted);
 
-  text-align:center;
-
   font-size:14px;
+
+  letter-spacing:5px;
+
+  text-transform:uppercase;
 
 }
 
 
 
 
-
 /*
 ========================
-Main Columns
+Columns
 ========================
 */
+
 
 .column {
 
@@ -106,10 +112,10 @@ Main Columns
     1px solid var(--border-subtle);
 
 
-  border-radius:20px;
+  border-radius:28px;
 
 
-  padding:var(--space-md);
+  padding:32px;
 
 
   color:var(--text-secondary);
@@ -124,18 +130,47 @@ Main Columns
 }
 
 
+
 .left {
+
   grid-column:1;
+
 }
+
 
 
 .center {
+
   grid-column:2;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:35px;
+
+  overflow:hidden;
+
 }
 
 
+
 .right {
+
   grid-column:3;
+
+  flex-direction:column;
+
+  justify-content:flex-start;
+
+  align-items:stretch;
+
+  gap:20px;
+
+  overflow-y:auto;
+
 }
 
 
@@ -144,44 +179,54 @@ Main Columns
 
 /*
 ========================
-Clock Widget
+Clock
 ========================
 */
+
 
 .clock {
 
   text-align:center;
 
+  flex-shrink:0;
+
 }
+
 
 
 .clock-time {
 
-  font-size:120px;
+  font-size:170px;
 
   font-weight:200;
 
-  letter-spacing:8px;
+  letter-spacing:12px;
+
+  line-height:1;
 
 }
+
 
 
 .clock-day {
 
-  font-size:18px;
+  margin-top:18px;
 
-  letter-spacing:8px;
+  font-size:22px;
+
+  letter-spacing:10px;
 
 }
 
 
+
 .clock-date {
 
-  margin-top:var(--space-xs);
+  margin-top:12px;
 
-  font-size:18px;
+  font-size:22px;
 
-  letter-spacing:3px;
+  letter-spacing:5px;
 
   color:var(--text-muted);
 
@@ -193,14 +238,14 @@ Clock Widget
 
 /*
 ========================
-Reusable Cards
+Cards
 ========================
 */
+
 
 .card {
 
   width:100%;
-
 
   background:
     var(--background-surface);
@@ -219,37 +264,19 @@ Reusable Cards
   box-shadow:
     0 10px 30px rgba(0,0,0,0.15);
 
-
-  transition:
-    transform .2s ease;
-
 }
 
-
-.card:hover {
-
-  transform:
-    translateY(-2px);
-
-}
 
 
 .card-title {
 
-  font-size:14px;
+  font-size:16px;
 
-  letter-spacing:4px;
+  letter-spacing:5px;
 
   color:var(--text-muted);
 
   margin-bottom:20px;
-
-}
-
-
-.card-content {
-
-  width:100%;
 
 }
 
@@ -259,9 +286,10 @@ Reusable Cards
 
 /*
 ========================
-System Metrics Widget
+System Metrics
 ========================
 */
+
 
 .system-metrics {
 
@@ -271,26 +299,7 @@ System Metrics Widget
 
   flex-direction:column;
 
-  gap:20px;
-
-}
-
-
-
-
-/*
-========================
-Segmented Usage Meter
-
-CPU
-██████░░░░ 30%
-
-========================
-*/
-
-.status-meter {
-
-  width:100%;
+  gap:14px;
 
 }
 
@@ -302,15 +311,11 @@ CPU
 
   justify-content:space-between;
 
-  align-items:center;
+  margin-bottom:10px;
 
+  font-size:17px;
 
-  margin-bottom:8px;
-
-
-  font-size:14px;
-
-  letter-spacing:2px;
+  letter-spacing:3px;
 
 }
 
@@ -320,15 +325,10 @@ CPU
 
   display:grid;
 
-
   grid-template-columns:
     repeat(20,1fr);
 
-
   gap:2px;
-
-
-  width:100%;
 
 }
 
@@ -336,12 +336,9 @@ CPU
 
 .status-segment {
 
-  height:12px;
+  height:14px;
 
   border-radius:3px;
-
-  transition:
-    background .3s ease;
 
 }
 
@@ -352,12 +349,9 @@ CPU
 /*
 ========================
 Network Graph
-
-Green  = Upload
-Blue   = Download
-
 ========================
 */
+
 
 .network-card {
 
@@ -366,114 +360,15 @@ Blue   = Download
 }
 
 
-
-.network-title {
-
-  font-size:13px;
-
-  letter-spacing:4px;
-
-  color:var(--text-muted);
-
-  margin-bottom:14px;
-
-}
-
-
-
-.network-chart {
-
-  width:100%;
-
-  height:140px;
-
-  overflow:visible;
-
-}
-
-
-
-/*
-========================
-Graph Dots
-MKBHD style
-========================
-*/
-
-.graph-dot {
-
-  fill:
-    rgba(255,255,255,0.10);
-
-}
-
-
-
-
-
-/*
-========================
-Graph Lines
-========================
-*/
-
-
-.upload-line {
-
-  fill:none;
-
-  stroke:#7CFF9B;
-
-  stroke-width:2;
-
-  stroke-linecap:round;
-
-  stroke-linejoin:round;
-
-}
-
-
-
-.download-line {
-
-  fill:none;
-
-  stroke:#78A8FF;
-
-  stroke-width:2;
-
-  stroke-linecap:round;
-
-  stroke-linejoin:round;
-
-}
-
-
-
-
-/*
-========================
-Network Stats
-========================
-*/
 
 .network-graph {
+
   width:100%;
-  height:140px;
+
+  height:180px;
+
 }
 
-
-.network-card {
-  width:100%;
-}
-
-
-.network-title {
-  font-size:13px;
-  letter-spacing:4px;
-  color:var(--text-muted);
-  margin-bottom:14px;
-}
 
 
 .network-stats {
@@ -484,26 +379,64 @@ Network Stats
 
   margin-top:12px;
 
-  font-size:14px;
+  font-size:16px;
 
 }
 
 
-.upload {
-  color:#7CFF9B;
+
+
+
+/*
+========================
+Panchangam Support
+========================
+*/
+
+
+.center > * {
+
+  max-width:100%;
+
 }
 
 
-.download {
-  color:#78A8FF;
-}
 
-.right {
 
-  flex-direction:column;
+/*
+========================
+Laptop fallback
+========================
+*/
 
-  justify-content:flex-start;
 
-  gap:24px;
+@media (max-height:850px) {
+
+
+  .homeos-layout {
+
+    padding:16px;
+
+    gap:14px;
+
+  }
+
+
+
+  .column {
+
+    padding:20px;
+
+  }
+
+
+
+  .clock-time {
+
+    font-size:120px;
+
+  }
+
+
 
 }

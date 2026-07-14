@@ -37,23 +37,9 @@ export default function SystemInfo(){
     <div className={styles.card}>
 
 
-      <div className={styles.title}>
-        SERVER
+      <div className={styles.serverName}>
+        {hostname || "unknown"}
       </div>
-
-
-      <div className={styles.row}>
-
-        <span>
-          NAME
-        </span>
-
-        <strong>
-          {hostname || "unknown"}
-        </strong>
-
-      </div>
-
 
 
       <div className={styles.row}>

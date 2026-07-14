@@ -1,0 +1,99 @@
+.container {
+
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+  font-family:"Ramabhadra", sans-serif;
+
+  gap:12px;
+
+}
+
+
+.samvatsaram {
+
+  font-size:44px;
+
+  letter-spacing:1px;
+
+}
+
+
+.season {
+
+  font-size:34px;
+
+}
+
+
+.maasam {
+
+  font-size:38px;
+
+}
+
+
+.tithi {
+
+  font-size:46px;
+
+}
+
+
+.tithiEnd {
+
+  margin-top:5px;
+
+  font-size:20px;
+
+  opacity:0.45;
+
+}
+
+
+.nakshatram {
+
+  font-size:40px;
+
+}
+
+
+
+.sunmoon {
+
+  width:90%;
+
+  display:flex;
+
+  justify-content:space-evenly;
+
+  margin-top:45px;
+
+}
+
+
+.label {
+
+  font-size:24px;
+
+  opacity:0.55;
+
+}
+
+
+.time {
+
+  font-size:60px;
+
+  margin-top:8px;
+
+}

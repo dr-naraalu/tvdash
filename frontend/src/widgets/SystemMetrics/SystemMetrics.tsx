@@ -14,7 +14,7 @@ export default function SystemMetrics() {
   return (
     <div className="system-metrics">
 
-      <Card title="SYSTEM">
+      <Card>
 
         <StatusMeter
           title="CPU"
@@ -39,7 +39,7 @@ export default function SystemMetrics() {
       </Card>
 
 
-      <Card title="NETWORK">
+      <Card>
 
         <NetworkGraph
           upload={stats.upload}

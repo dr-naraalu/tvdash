@@ -1,0 +1,84 @@
+.card {
+
+  width:100%;
+
+}
+
+
+
+.title {
+
+  font-size:13px;
+
+  letter-spacing:4px;
+
+  color:var(--text-muted);
+
+  margin-bottom:14px;
+
+}
+
+
+
+.service {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:12px;
+
+  font-size:14px;
+
+}
+
+
+
+.service span {
+
+  flex:1;
+
+}
+
+
+
+.service strong {
+
+  font-size:12px;
+
+  font-weight:500;
+
+  color:var(--text-muted);
+
+}
+
+
+
+.online,
+.offline {
+
+  width:8px;
+
+  height:8px;
+
+  border-radius:50%;
+
+}
+
+
+
+.online {
+
+  background:#7CFF9B;
+
+}
+
+
+
+.offline {
+
+  background:#ff5c5c;
+
+}

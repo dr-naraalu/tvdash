@@ -1,3 +1,5 @@
+import { getApiBase } from "../config/api";
+
 export type DashboardData = {
   cpu: number;
   ram: number;
@@ -8,10 +10,10 @@ export type DashboardData = {
   download: number;
 };
 
-const API_URL = "http://192.168.0.102:8000/stats";
-
 export async function getDashboardData(): Promise<DashboardData> {
-  const response = await fetch(API_URL);
+  const API = await getApiBase();
+
+  const response = await fetch(`${API}/stats`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch dashboard data");

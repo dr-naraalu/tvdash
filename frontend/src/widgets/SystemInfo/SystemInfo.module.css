@@ -4,7 +4,19 @@
 
 }
 
+.serverName {
+  font-size: 1.35rem;
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
 
+  color: var(--text-primary);
+
+  text-align: center;
+
+  margin-bottom: 0.6rem;
+
+  opacity: 0.95;
+}
 
 .title {
 

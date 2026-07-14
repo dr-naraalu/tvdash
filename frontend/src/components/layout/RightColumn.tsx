@@ -1,5 +1,6 @@
-import SystemMetrics from "../../widgets/SystemMetrics/SystemMetrics";
 import SystemInfo from "../../widgets/SystemInfo";
+import SystemMetrics from "../../widgets/SystemMetrics/SystemMetrics";
+import Services from "../../widgets/Services";
 
 
 export default function RightColumn(){
@@ -11,6 +12,8 @@ export default function RightColumn(){
       <SystemInfo />
 
       <SystemMetrics />
+
+      <Services />
 
     </section>
 
